@@ -160,7 +160,7 @@ config.rst
 *.synctex(busy)
 *.synctex.gz
 *.synctex.gz(busy)
-*.pdfsync
+
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
@@ -273,7 +273,6 @@ _minted*
 *.pax
 
 # pdfpcnotes
-*.pdfpc
 
 # sagetex
 *.sagetex.sage
@@ -342,5 +341,3 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
-
-*.pdf
