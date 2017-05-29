@@ -7,7 +7,7 @@ Write Stuff
 		DenseNet
 		ResNet
 		HighwayNet ?
-	Implmentation
+	Implementation
 		RegularNet
 		DenseNet
 		ResNet
@@ -18,4 +18,6 @@ Write Stuff
 		Discuess the results
 	Conclude
 	
-	Add Appendix with exercises (Rename alot of code)
+	Appendix
+		exercises  ✔ 
+		code
