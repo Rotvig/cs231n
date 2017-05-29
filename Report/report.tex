@@ -1,8 +1,11 @@
 \RequirePackage{etex}
 \RequirePackage{fix-cm} % For custom font shaping
 
+
 % Document class
 \documentclass[pdftex, 11pt, a4paper, oneside, english]{memoir}
+
+
 
 % Page styling
 \let\footruleskip\undefined
@@ -22,6 +25,8 @@
 \usepackage[table,xcdraw]{xcolor}
 \definecolor{ThemeColor}{RGB}{51, 102, 255} % Blue
 \definecolor{BlackColor}{RGB}{0, 0, 0} % Black
+
+\usepackage{pdfpages}
 
 % Table packages
 % Merge cells i tables
@@ -89,6 +94,7 @@
     \include{chapter/Discussion}
     \include{chapter/Conclusion}
 	\bibliography{bibliografi}% Selects .bib file AND prints bibliography
+	\input{chapter/Appendix.tex}
 
 
 	\addtocontents{toc}{\protect\setcounter{tocdepth}1}

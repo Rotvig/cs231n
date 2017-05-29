@@ -1,0 +1,21 @@
+###### GAME PLAN ######
+
+Write Stuff
+	Introduction
+	Theory
+		RegularNet
+		DenseNet
+		ResNet
+		HighwayNet ?
+	Implmentation
+		RegularNet
+		DenseNet
+		ResNet
+		HighwayNet ?
+	Results
+		Resulst for all nets
+	Discussion
+		Discuess the results
+	Conclude
+	
+	Add Appendix with exercises (Rename alot of code)
