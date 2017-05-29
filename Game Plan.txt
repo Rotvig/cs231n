@@ -1,6 +1,7 @@
 ###### GAME PLAN ######
 
 Write Stuff
+	Abstract
 	Introduction
 	Theory
 		RegularNet
@@ -17,7 +18,7 @@ Write Stuff
 	Discussion
 		Discuess the results
 	Conclude
-	
+		Conclude the report
 	Appendix
 		exercises  ✔ 
 		code
