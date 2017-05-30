@@ -1,8 +1,21 @@
 \section{Densely Connected Convolutional Networks - DenseNet}
 
+A traditional convolutional networks consists of L layers and have L connections - one between each layer and its subsequent layer. The DenseNet also known as Densely Connected Convolutional Networks has $L(L+1)/2$ direct connections. The DenseNet has several compelling advantages. For example it alleviates the vanishing-gradient problem, it strengthen feature propagation and substantially reduce the number of parameters.
 
+A DenseNet does not solely consist of dense blocks. It also consists of convolution, pooling and some classification layer at the end. This can be seen in figure \ref{fig:architecture}. The convolution and pooling layer are referred to as the transition layers.
 
+\myFigure{dens.PNG}{A deep densely connected convolutional network where there are three dense blocks. The blocks between the three dense blocks are adjacent blocks also referred to as transition layers\citep{DENSE}}{fig:architecture}{1}
 
-\myFigure{dens.PNG}{A deep Densely Connected Convolutional Network where there are three dense blocks. The blocks between the three dense blocks are adjacent blocks also referred to as transition layers\citep{DENSE}}{fig:architecture}{1}
+To improve the flow of information in the DenseNet - direct connection is used from any layer to all subsequent layers. The results of this is that the $l^{th}$ layer receives the feature-map of all the past layers. The output of the $l^{th}$ layer is denoted as $X_l$.
 
-\myFigure{denselayers.PNG}{A 5 layer dens block with \citep{DENSE}}{fig:dense}{1}
+\begin{equation}
+X_l=H_l([x_0,x_1,...,X_{l-1}])
+\end{equation}
+
+$[x_0,x_1,...,X_{l-1}]$ refers to the concatenation of the feature-maps which the layers produces. This network architecture is referred to as DenseNet. The direct connection is illustrated in figure \ref{fig:dense}. The multiple inputs of $H_e(.)$ are concatenated into a single tensor\footnote{Tensors are geometric objects that describe the linear relation between geometric vectors, scalars and other tensors}.
+
+Convolutional networks's becomes deeper. With the increasing depth new problem emerges. Such as the information of the input or gradient are passed through many layers, it can vanish this is also known as the vanishing-gradient problem. A solution for this is to bypass the signal from one layer to the next. The solution in DenseNet is to connect all layers directly with each other. This connection preserves the feed-forward nature and each layers receives additional inputs from all preceding layers. This is seen in figure \ref{fig:dense}.
+
+\myFigure{denselayers.PNG}{A 5 layer dens block \citep{DENSE}}{fig:dense}{0.7}
+
+In figure \ref{fig:dense} a 5 layers dens block is illustrated. Between each of the layers in the dense block \emph{Batch Normalization}, \emph{ReLU} and convolutional layer are applied.
