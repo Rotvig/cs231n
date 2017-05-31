@@ -5,14 +5,12 @@ Write Stuff
 	Introduction
 	Theory
 		RegularNet
-		DenseNet
-		ResNet
-		HighwayNet ?
+		DenseNet 	✔
+		ResNet 		✔
 	Implementation
 		RegularNet
 		DenseNet
 		ResNet
-		HighwayNet ?
 	Results
 		Resulst for all nets
 	Discussion
@@ -20,5 +18,5 @@ Write Stuff
 	Conclude
 		Conclude the report
 	Appendix
-		exercises  ✔ 
+		exercises  	✔ 
 		code
