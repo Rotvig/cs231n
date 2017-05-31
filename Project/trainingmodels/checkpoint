@@ -1,2 +1,2 @@
-model_checkpoint_path: "model_regularnet.ckpt"
-all_model_checkpoint_paths: "model_regularnet.ckpt"
+model_checkpoint_path: "model_resnet.ckpt"
+all_model_checkpoint_paths: "model_resnet.ckpt"
