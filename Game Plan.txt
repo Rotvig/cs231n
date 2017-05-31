@@ -6,10 +6,10 @@ Write Stuff
 	Theory
 		Feature Invariance
 		RegularNet
-		DenseNet 	✔
-		ResNet 		✔
+		DenseNet 			✔
+		ResNet 				✔
 	Implementation
-		Tensorflow
+		Tensorflow			✔
 		Feature Invariance
 		RegularNet
 		DenseNet
@@ -21,5 +21,5 @@ Write Stuff
 	Conclude
 		Conclude the report
 	Appendix
-		exercises  	✔ 
+		exercises  			✔ 
 		code
