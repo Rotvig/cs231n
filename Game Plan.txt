@@ -4,10 +4,13 @@ Write Stuff
 	Abstract
 	Introduction
 	Theory
+		Feature Invariance
 		RegularNet
 		DenseNet 	✔
 		ResNet 		✔
 	Implementation
+		Tensorflow
+		Feature Invariance
 		RegularNet
 		DenseNet
 		ResNet
