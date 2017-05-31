@@ -4,13 +4,18 @@
 This chapter describes some of the implementation details of the project. The idea of the project is to see the classification capabilities of RegularNet, ResNet and DenseNet when the original images has been rotated from 0 to 360 degrees. The implementation of the different nets are implemented in a Jupyter Notebook.
 
 \section{Tensorflow}
-Tensorflow is used in this project to create RegularNet, ResNet and DenseNet. 
-Tensorflow is an open-source software library created to ease the implementation and use of neural nets. The code base is on github\footnote{\url{https://github.com/tensorflow/tensorflow}}.
-In this project Tensorflow is used with Python 2.7 and Jupyter.
+TensorFlow is used in this project to create RegularNet, ResNet and DenseNet. 
+TensorFlow is an open-source software library created to ease the implementation and use of neural nets. The code base is on github\footnote{\url{https://github.com/tensorflow/tensorflow}}.
+%https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1#G0Bw37nIXex8aXYmE1Mll1U1oxUmc
+\myFigure{tensorflow.PNG}{Illustration of how TensorFlow is used in this project}{fig:tf}{0.8}
 
+In figure \ref{fig:tf} it is seen how TensorFlow is used in this project. The first part of using TensorFlow is to create the neural net that is needed - how this is done is elaborated in the following chapters. When the neural net is created in TensorFlow the training is ready to commence. 
+
+The Training then yields a model which can be used for classification of images. The model is tested with Cifar-10 test batch. The Output contains probabilities of the classifications - such as 10 \% probability that the image is a truck.
 \input{FeatureInvariance}
 
-\section{Deep Neural Net - RegularNet}
-%composed exclusively of regular and strided convolutional layers. While this architecture works well for relatively shallow networks, it becomes increasingly more difficult to train as the network depth increases.
-\section{Deep Residual Networks - ResNet}
-\section{Densely Connected Convolutional Networks - DenseNet}
+\input{RegularNet_imp}
+
+\input{ResNet_imp}
+
+\input{DenseNet_imp}

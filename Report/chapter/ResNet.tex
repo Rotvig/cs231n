@@ -7,7 +7,7 @@ Deep convolutional neural networks is today used to produce the best results on 
 
 On figure \ref{fig:plain} it is shown that a convolutional neural network with 20 layers achieves a better performance than a network with 56 layers. A reason why the 56-layer network is bad could be the vanishing / exploding gradients problem, which hamper convergence from the beginning of the training. This problem can be solved by normalized initialization and intermediate normalization layers, which will make the network start converging. After solving this problem the deeper networks will be able to converge, but here a degradation problem might occur, meaning that with the network depth increasing the accuracy gets saturated. the degradation problem is also shown on figure \ref{fig:plain}. To solve this problem a deep residual network can be used.
 
-\myFigure{res_block}{A residual building block. \citep{RESNET}}{fig:resblock}{1}
+\myFigure{res_block}{A residual building block. \citep{RESNET}}{fig:resblock}{0.5}
 
 Figure \ref{fig:resblock} shows a residual learning building block. In a residual neural network the underlying layers are fit a residual mapping. The underlying mapping is referred to as \emph{H(x)}, where the nonlinear layers fit a mapping of \emph{F(x) = H(x) - x}. The original mapping is represented as \emph{F(x) + x}, where this mapping can be realized by feed forward neural networks with shortcut connections. Shortcut connections are connections which takes the input \emph{x} and skips it forward to the output of the stacked layers, as seen in figure ref{fig:resblock}, this is also called identity mapping. The shortcut connections does not add extra complexity to the network. Each residual building block can be defined as:
 
@@ -22,3 +22,15 @@ F = W2\sigma(W1x)
 \end{equation} 
 
 In equation \ref{eq:func_res} $\sigma$ is the ReLU activation function, while W2 and W1 is the weights for each layer. The shortcut connections added in equation \ref{eq:res} does not introduce any extra parameters or computation complexity. This is good for the comparison between plain and residual networks, as two networks can be compared easily as they have the same amount of parameters, depth, width and computational cost.
+\newline
+
+On figure \ref{fig:plainvsres} the first layers of a plain and a residual network is shown. The plain network consist of convolutional layers with a 3x3 filter. When the output feature maps are the same size, the layers have the same amount of filters. If the size of the feature map is divided by two, the filters will be multiplied with two, and this will preserve the time complexity per layer. Downscaling is performed by convolutional layers that have a stride 2.
+
+\myFigure{plain_vs_res}{The left shows the first layers of a plain 34-layer network. The right shows the same layers from a 34-layer residual network. \citep{RESNET}}{fig:plainvsres}{0.5}
+\FloatBarrier
+
+The difference from the plain network to the residual network architecture is the shortcut connections. When the input and the output of the layers are of the same dimensions the identity shortcuts can be used directly, this is shown on figure \ref{fig:plainvsres} by the solid lines going from input to output. When the dimensions between input and output increase the dotted line is used in figure \ref{fig:plainvsres}. Two solutions exist to the shortcut connections between two different input and output dimensions. The first solution is to pad extra zeros to the input image, to achieve the same dimension as the output image. This solution does not add any extra paramters to equation \ref{eq:res}. Another solution is to use a projection shortcut which is used to match the dimensions between input and ouput done by 1x1 convolutions. Adding the projection shortcut gives the equation shown in equation \ref{eq:func_proj}, where Ws is added to the equation.
+
+\begin{equation} \label{eq:func_proj}
+y = F(x, {Wi}) + Wsx.
+\end{equation} 
