@@ -10,10 +10,11 @@ Write Stuff
 		ResNet 				✔
 	Implementation
 		Tensorflow			✔
-		Feature Invariance
+		Feature Invariance	✔
 		RegularNet
 		DenseNet
 		ResNet
+		Training
 	Results
 		Resulst for all nets
 	Discussion

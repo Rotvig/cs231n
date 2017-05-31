@@ -1,1 +1,9 @@
 \section{Densely Connected Convolutional Networks - DenseNet}
+
+This section will elaborate on the implemented DenseNet. The implementation is done in python 2.7 and Jupyter. The implementation of the DenseNet is from the github repository\footnote{\url{https://github.com/awjuliani/TF-Tutorials}}. Article \citep{DENSE} has been used as the basis for the implementation of the DenseNet.
+
+The DenseNet in this project consist of 12 layers where 5 layers are dense blocks, and 7 layers are convolutional layers. At the end of the DenseNet a flattern layer and softmax layer. Adam is used as activation function.
+
+The convolutional layers has a filter size of 3 by 3, and a stride with 2 by 2. 
+
+The dense blocks consist of 6 convolutional layers which are connected in a direct connection to all subsequent layers and have a filter size of 3 by 3.
