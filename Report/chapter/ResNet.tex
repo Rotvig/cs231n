@@ -9,16 +9,16 @@ On figure \ref{fig:plain} it is shown that a convolutional neural network with 2
 
 \myFigure{res_block}{A residual building block. \citep{RESNET}}{fig:resblock}{1}
 
-Figure \ref{fig:resblock} shows a residual learning building block. In a residual neural network the underlying layers are fit a residual mapping. The underlying mapping is reffered to as \emph{H(x)}, where the nonlinear layers fit a mapping of \emph{F(x) = H(x) - x}. The original mapping is represented as \emph{F(x) + x}, where this mapping can be realized by feedforward neural networks with shortcut connections. Shortcut connections are connections which takes the input \emph{x} and skips it forward to the output of the stacked layers, as seen in figure ref{fig:resblock}, this is also called identity mapping. The shortcut connections does not add extra complexity to the network. Each residual building block can be defined as:
+Figure \ref{fig:resblock} shows a residual learning building block. In a residual neural network the underlying layers are fit a residual mapping. The underlying mapping is referred to as \emph{H(x)}, where the nonlinear layers fit a mapping of \emph{F(x) = H(x) - x}. The original mapping is represented as \emph{F(x) + x}, where this mapping can be realized by feed forward neural networks with shortcut connections. Shortcut connections are connections which takes the input \emph{x} and skips it forward to the output of the stacked layers, as seen in figure ref{fig:resblock}, this is also called identity mapping. The shortcut connections does not add extra complexity to the network. Each residual building block can be defined as:
 
 \begin{equation} \label{eq:res}
 y = F(x, {Wi}) + x
 \end{equation} 
 
-In equation \ref{eq:res} x and y are the input and output vectors of the layers in the building block. The $F(x,{Wi})$ function represents the residual mapping to be learned throughout the layers. By using figure \ref{fig:resblock} as a buliding block, the following function will be used for the two layers: 
+In equation \ref{eq:res} x and y are the input and output vectors of the layers in the building block. The $F(x,{Wi})$ function represents the residual mapping to be learned throughout the layers. By using figure \ref{fig:resblock} as a building block, the following function will be used for the two layers: 
 
 \begin{equation} \label{eq:func_res}
-F = W2σ(W1x)
+F = W2\sigma(W1x)
 \end{equation} 
 
-In equation \ref{eq:func_res} σ is the ReLU activation function, while W2 and W1 is the weights for each layer. The shortcut connections added in equation \ref{eq:res} does not introduce any extra paramters or computation complexity. This is good for the comparison between plain and residual networks, as two networks can be comparerd easily as they have the same amount of paramters, depth, width and computational cost.
+In equation \ref{eq:func_res} $\sigma$ is the ReLU activation function, while W2 and W1 is the weights for each layer. The shortcut connections added in equation \ref{eq:res} does not introduce any extra parameters or computation complexity. This is good for the comparison between plain and residual networks, as two networks can be compared easily as they have the same amount of parameters, depth, width and computational cost.
