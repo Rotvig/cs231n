@@ -1,5 +1,5 @@
 \section{Deep Neural Net - RegularNet}
-%composed exclusively of regular and strided convolutional layers. While this architecture works well for relatively shallow networks, it becomes increasingly more difficult to train as the network depth increases.
+Composed exclusively of regular and strided convolutional layers. While this architecture works well for relatively shallow networks, it becomes increasingly more difficult to train as the network depth increases.
 
 This section will elaborate on the implementaiton of a RegularNet used for this project. For the implementation python 2.7 and Jupyter is used. The implementation of the RegularNet is from the github repository\footnote{\url{https://github.com/awjuliani/TF-Tutorials}}. 
 
@@ -21,7 +21,7 @@ top = slim.conv2d(layer1,10,[3,3],normalizer_fn=slim.batch_norm,activation_fn=No
 output = slim.layers.softmax(slim.layers.flatten(top))
 \end{lstlisting}
 
-As seen in listing \ref{lst:regularloop} the function conv2d is called to create a convolution neuron. This function creates the convolution block with the internal layers and returns the output from the block. One neuron consists of 1 convolutional layer and 1 batch normalization block. Between the convolutional layer and the batch layer a ReLU activation function is added. The convolutional layer consists of 64 feature maps which each has 9 weights and so the convolutional layer outputs 64 new images for the relu function. The code for creating a residual block can be seen in listing \ref{lst:ConvLoss}..
+As seen in listing \ref{lst:regularloop} the function conv2d is called to create a convolution neuron. This function creates the convolution block with the internal layers and returns the output from the block. One neuron consists of 1 convolutional layer and 1 batch normalization block. Between the convolutional layer and the batch layer a ReLU activation function is added. The convolutional layer consists of 64 feature maps which each has 9 weights and so the convolutional layer outputs 64 new images for the relu function. The code for creating a residual block can be seen in listing \ref{lst:ConvLoss}.
 
 \begin{lstlisting}[language=Python, label=lst:ConvLoss, caption= Implementation of learning rate type ADAM]
 loss = tf.reduce_mean(-tf.reduce_sum(label_oh * tf.log(output) + 1e-10, axis=[1]))
