@@ -1,1 +1,62 @@
 \section{Training of the model}
+
+This section will elaborate on the training implementaiton of a model used for this project. For the implementation python 2.7 and Jupyter is used. The implementation of the training section is from the github repository\footnote{\url{https://github.com/awjuliani/TF-Tutorials}}.
+
+The training is started by initializing all the variables to a gaussian distribution and setting the batch size. The initialization is done to give the weights some ballast to train on, and so often in the beginning of the training the correction of the training loss will have a steep reduction. The batch size determines the amount of images which must go through the model, both forward and backward propagation, before the update parameter function ADAM is enabled. The batch size regress the model and it is a hyperparameter, but unfortunately it can also cause a large amount of memory in usage. The batch size can sometimes during implementation be compromised for the hardware to be able to keep up. The batch size of 64 is used, with a total of 20000 steps. Each step consist of 64 images from one of the six folds of the cifar-10 dataset. The cifar-10 dataset is divided into five random parts for training and one part for testing. Each part of the train data will be used as a validation part to get an training error, while the entire test data set is only used once through out the training. As shown in \ref{lst:trainingLoop}, 64 random images are taking from an image fold of 10000 images. 
+
+\begin{lstlisting}[language=Python, label=lst:trainingLoop, caption=for loop which finds the 64 training images for training the model]
+init = tf.global_variables_initializer()
+batch_size = 64
+currentCifar = 1
+total_steps = 20000
+l = []
+a = []
+aT = []
+saver = tf.train.Saver()
+sess = tf.Session()
+sess.run(init)
+i = 0
+draw = range(10000)
+while i < total_steps:
+	if i % (10000/batch_size) != 0:
+		batch_index = np.random.choice(draw,size=batch_size,replace=False)
+	else:
+		draw = range(10000)
+		if currentCifar == 5:
+			currentCifar = 1
+			print "Switched CIFAR set to " + str(currentCifar)
+		else:
+			currentCifar = currentCifar + 1
+			print "Switched CIFAR set to " + str(currentCifar)
+		cifar = unpickle('./cifar10/data_batch_'+str(currentCifar))
+		batch_index = np.random.choice(draw,size=batch_size,replace=False)
+	x = ConvertImages(cifar['data'][batch_index])  
+	y = np.reshape(np.array(cifar['labels'])[batch_index],[batch_size,1])
+\end{lstlisting}
+
+The images are forwarded through the network as shown in \ref{lst:Parameter_updating}, while the loss and accuracy is saved. Together with the current loss are the probabilities for each category being saved. The true label is than compared to the true label of the image, and if the comparison is true the accuracy is updated.
+
+For each tenth step the accuracy is printed, while for each 100 step a small part of the test data is forwarded through the model. The test data does not update the model, but it only shows how well the model is progressing through the training. When the training is done, the model is saved for later analysis through saver.save.
+
+\begin{lstlisting}[language=Python, label=lst:Parameter_updating, caption=Parameter updating: loss and accuracy are saved and they are tested every 100 steps]
+	_,lossA,yP,LO = sess.run([update,loss,output,label_oh],feed_dict={input_layer:x,label_layer:np.hstack(y)})
+	accuracy = np.sum(np.equal(np.hstack(y),np.argmax(yP,1)))/float(len(y))
+	l.append(lossA)
+	a.append(accuracy)
+	if i % 10 == 0: print "Step: " + str(i) + " Loss: " + str(lossA) + " Accuracy: " + str(accuracy)
+	if i % 100 == 0: 
+		point = np.random.randint(0,10000-500)
+		xT = ConvertImages(cifarT['data'][point:point+500]) 
+		yT = np.reshape(np.array(cifarT['labels'])[point:point+500],[500])
+		lossT,yP = sess.run([loss,output],feed_dict={input_layer:xT,label_layer:yT})
+		accuracy = np.sum(np.equal(yT,np.argmax(yP,1)))/float(len(yT))
+		aT.append(accuracy)
+		print "Test set accuracy: " + str(accuracy)
+	i+= 1
+save_path = saver.save(sess, "./trainingmodels/RegularNet/model_regularnet.ckpt")
+print "Model saved in file: " + str(save_path)
+sess.close()
+\end{lstlisting}
+
+
+
