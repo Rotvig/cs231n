@@ -79,16 +79,30 @@ Listing \ref{lst:testing} show the scramble and label wise classification testin
 
 \section{Scrambled Classification - Reading Guide}
 A scrambled classification has been performed. The test set consist of 2000 label wise mixed images. The images has been obtained from the Cifar-10 test batch.
+All figures has \emph{Accuracy} on the y-axis which is the mean of all the accuracies and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position.
 
 The tables has been created by taking the total amount of falsely classified images, and then it has been separated into the separate labels and the percentage which is shown represent the amount of falsely classified label.
 
 \section{Label wise Classification - Reading Guide}
 A label wise classification has been performed on 500 images from the Cifar-10 test batch. All the results for the separate labels can be seen in the following subsections. At the end a label wise collective plot consisting of all the separate labels in one plot has been created for comparison.
-All figures has \emph{Accuracy} on the y-axis and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position.
+All figures has \emph{Accuracy} on the y-axis which is the mean of all the accuracies and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position.
 
 \section{Deep Neural Net - RegularNet}
-\subsection{Total Accuracy}
+This section is for all the results of the Regular neural net.
 \subsection{Scrambled Classification}
+\myFigure{results/RegularNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees}{fig:scramReg}{0.8}
+\FloatBarrier
+
+\begin{table}[]
+	\centering
+	\caption{Percentage of falsely classified images separated into labels }
+	\label{table:falseclasReg}
+	\begin{tabular}{llllllllll}
+		Airplane & Automobile & Bird     & Cat    & Deer     & Dog     & Frog   & Horse    & Ship         & Truck         \\
+		8.58 \%  & 8.93 \%    & 11.197 \% & 10.75 \% & 9.6 \% & 8.43 \% & 7.8 \% & 11.22 \% & 12.17 \% & 11.32 \%
+	\end{tabular}
+\end{table}
+\FloatBarrier
 \subsection{Label wise Classification}
 \subsubsection{Label 0 - Airplane}
 \myFigure{results/RegularNet/LabelWise/label0_500.PNG}{Label 0 - Airplane}{fig:airplane}{0.8}
@@ -125,9 +139,21 @@ All figures has \emph{Accuracy} on the y-axis and \emph{Degree} on the x-axis - 
 \FloatBarrier
 
 \section{Deep Residual Networks - ResNet}
-
-\subsection{Total Accuracy}
+This section is for all the results of the Deep residual network.
 \subsection{Scrambled Classification}
+\myFigure{results/ResNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees}{fig:scramRes}{0.8}
+\FloatBarrier
+
+\begin{table}[]
+	\centering
+	\caption{Percentage of falsely classified images separated into labels }
+	\label{table:falseclasRes}
+	\begin{tabular}{llllllllll}
+		Airplane & Automobile & Bird     & Cat    & Deer     & Dog     & Frog   & Horse    & Ship         & Truck         \\
+		9.7 \%  & 9.1 \%    & 10.17 \% & 9.8 \% & 10.1 \% & 8.4\% & 8.6 \% & 11.22 \% & 11.47 \% & 11.47 \%
+	\end{tabular}
+\end{table}
+\FloatBarrier
 \subsection{Label Wise Classification}
 \subsubsection{Label 0 - Airplane}
 \subsubsection{Label 1 - Automobile}
@@ -142,9 +168,12 @@ All figures has \emph{Accuracy} on the y-axis and \emph{Degree} on the x-axis - 
 \subsubsection{Collective Label Wise Results}
 
 \section{Densely Connected Convolutional Networks - DenseNet}
+This section is for all the results of the Densely connected convolutional network.
 
-\subsection{Total Accuracy}
 \subsection{Scrambled Classification}
+
+\myFigure{results/DenseNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees}{fig:scram}{0.8}
+\FloatBarrier
 
 \begin{table}[]
 	\centering
