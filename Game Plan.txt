@@ -3,23 +3,24 @@
 Write Stuff
 	Introduction
 	Theory
-		Feature Invariance
-		RegularNet
+		Feature Invariance	Troels Færdig idag
+		RegularNet			Troels Færdig idag
 		DenseNet 			✔
 		ResNet 				✔
 	Implementation
 		Tensorflow			✔
 		Feature Invariance	✔
-		RegularNet
+		RegularNet			Troels
 		DenseNet			✔
-		ResNet
-		Training
+		ResNet				Peter Færdig idag
+		Training			Troels
 	Results
-		Resulst for all nets
-	Discussion
-		Discuess the results
-	Conclude
-		Conclude the report
+		Test Methods		Peter Færdig idag
+		Results for all nets René Færdig idag (Troels Scrambled - 2000)
+	Discussion 1-2 sider
+		Discuess the results Troels udkast til imorgen 8:15
+	Conclude 0.5 side
+		Conclude the report	Troels udkast til imorgen 8:15
 	Appendix
 		exercises  			✔ 
-		code
+		code				✔
