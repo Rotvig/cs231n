@@ -4,15 +4,17 @@ Write Stuff
 	Abstract
 	Introduction
 	Theory
+		Feature Invariance
 		RegularNet
-		DenseNet
-		ResNet
-		HighwayNet ?
+		DenseNet 			✔
+		ResNet 				✔
 	Implementation
+		Tensorflow			✔
+		Feature Invariance	✔
 		RegularNet
 		DenseNet
 		ResNet
-		HighwayNet ?
+		Training
 	Results
 		Resulst for all nets
 	Discussion
@@ -20,5 +22,5 @@ Write Stuff
 	Conclude
 		Conclude the report
 	Appendix
-		exercises  ✔ 
+		exercises  			✔ 
 		code

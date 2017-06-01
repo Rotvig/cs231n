@@ -1,0 +1,35 @@
+\section{Feature Invariance}
+
+Rotation is added to the testing images to see how tolerant the different models are. This section will describe the implementation of the rotation method used to test feature invariance. The implementation of the rotation can be seen in listing \ref{lst:rotation}.
+
+\begin{lstlisting}[language=Python, label=lst:rotation, caption=Rotate the images]
+rotAngle = 10
+curAngle = 10
+    
+#First run for original image
+accList.append(CalcTestAccuracy(sess, ConvertImages(images), 
+	labels, False))
+    
+#Rotate images in curAngle in degree from 0-360
+while curAngle < 360:
+	rotImages = tf.contrib.image.rotate(ConvertImages(images), 
+		np.radians(curAngle))
+        
+	#print first rotated image
+	plt.imshow(np.reshape(rotImages.eval()[0],(32,32,3), order='F'))
+	plt.show()
+        
+	#Calc accuracy for the rotated images
+	accList.append(CalcTestAccuracy(sess, rotImages, labels, True))
+        
+	#Increment or curAngle with +rotAngle
+	curAngle += rotAngle
+\end{lstlisting}
+
+First the accuracy for the original images is calculated, this is the same as having a rotation of 0. Thereafter the images is rotated by 10 degree and the accuracy is calculated for the rotated images. The images will get rotated until they reach a rotation of 350 degree, and therefore a total of 35 accuracies is calculated (from 0 to 350 degree). 360 degree is not included, as this will be the same as a 0 degree rotation. The accuracies is added to a list, which will be used to plot the results. The first image in the test set is printed out to see that the rotation is done correctly.
+\newline
+
+Figure \ref{fig:orgimg} shows the frist original image extracted from the CIFAR10 test set. By rotating the original image with 40 degree the image shown in figure \ref{fig:rotimg} is given. The images shown in figure \ref{fig:rot} is blurry, this is because the images in the CIFAR10 set is small, and when plotting them they get stretched. The printed images have been reshaped to a 32x32x3 image to be able to plot them. Three is the depth of the colorspace for the image, which in this case is the RGB colorspace. The images on figure \ref{fig:rot} clearly shows an airplane. 
+
+\mySubFigure{org_image}{rotate_40}{Comparison of the original image and a image which is rotated 40 degree}{Original image}{Image rotated 40 degree}{fig:rot}{fig:orgimg}{fig:rotimg}
+
