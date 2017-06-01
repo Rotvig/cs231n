@@ -17,10 +17,11 @@ def random_flips(X):
   # TODO: Implement the random_flips function. Store the result in out.       #
   #############################################################################
   N, C, H, W = X.shape
-  mask = np.random.randint(2, size=N)
+  
+  flips = np.random.randint(2, size=N)
   out = np.zeros(X.shape)
-  out[mask == 1] = X[mask == 1, :, :, ::-1]
-  out[mask == 0] = X[mask == 0]
+  out[flips == 1] = X[flips == 1, :, :, ::-1]
+  out[flips == 0] = X[flips == 0]
   #############################################################################
   #                           END OF YOUR CODE                                #
   #############################################################################
@@ -48,11 +49,11 @@ def random_crops(X, crop_shape):
   # TODO: Implement the random_crops function. Store the result in out.       #
   #############################################################################
   np.random.randint((H-HH), size=N)
-  y_start = np.random.randint((H-HH), size=N)
-  x_start = np.random.randint((W-WW), size=N)
+  y_crop = np.random.randint((H-HH), size=N)
+  x_crop = np.random.randint((W-WW), size=N)
 
   for i in xrange(N):
-        out[i] = X[i, :, y_start[i]:y_start[i]+HH, x_start[i]:x_start[i]+WW]
+        out[i] = X[i, :, y_crop[i]:y_crop[i]+HH, x_crop[i]:x_crop[i]+WW]
   #############################################################################
   #                           END OF YOUR CODE                                #
   #############################################################################
@@ -82,8 +83,8 @@ def random_contrast(X, scale=(0.8, 1.2)):
   #############################################################################
   # TODO: Implement the random_contrast function. Store the result in out.    #
   #############################################################################
-  l = (scale[1]-scale[0])*np.random.random_sample(N)+scale[0]
-  out = X * l[:, None, None, None]
+  contrast = (scale[1]-scale[0])*np.random.random_sample(N)+scale[0]
+  out = X * contrast[:, None, None, None]
   #############################################################################
   #                           END OF YOUR CODE                                #
   #############################################################################
@@ -113,8 +114,8 @@ def random_tint(X, scale=(-10, 10)):
   #############################################################################
   # TODO: Implement the random_tint function. Store the result in out.        #
   #############################################################################
-  l = (scale[1]-scale[0])*np.random.random_sample((N, C))+scale[0]
-  out = X+l[:, :, None, None]
+  tint = (scale[1]-scale[0])*np.random.random_sample((N, C))+scale[0]
+  out = X+tint[:, :, None, None]
   #############################################################################
   #                           END OF YOUR CODE                                #
   #############################################################################

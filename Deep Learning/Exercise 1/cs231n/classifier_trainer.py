@@ -107,7 +107,7 @@ class ClassifierTrainer(object):
           #####################################################################
         elif update == 'rmsprop':
           eps = 1e-8
-          decay_rate = 0.99 # you could also make this an option
+          decay_rate = 0.99
           if not p in self.step_cache: 
             self.step_cache[p] = np.zeros(grads[p].shape)
           
