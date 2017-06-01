@@ -107,6 +107,7 @@ def relu_backward(dout, cache):
   #############################################################################
   # TODO: Implement the ReLU backward pass.                                   #
   #############################################################################
+  # This secures that ReLu never goes below zero
   out = np.maximum(0, x)
   out[out > 0 ] = 1
   dx = out * dout
@@ -146,7 +147,8 @@ def dropout_forward(x, dropout_param):
     # TODO: Implement the training phase forward pass for inverted dropout.   #
     # Store the dropout mask in the mask variable.                            #
     ###########################################################################
-    mask = (np.random.rand(*x.shape) < p) / p
+    preMask = (np.random.rand(*x.shape) < p)
+	mask = preMask / p
     out = x * mask
     ###########################################################################
     #                            END OF YOUR CODE                             #
@@ -238,8 +240,6 @@ def conv_forward_naive(x, w, b, conv_param):
           w2 = w_mark * stride + WW
           window = x_pad[:, h1:h2, w1:w2]
           out[n, f, h_mark, w_mark] = np.sum(window * w[f,:,:,:]) + b[f]
-    
-  
   #############################################################################
   #                             END OF YOUR CODE                              #
   #############################################################################

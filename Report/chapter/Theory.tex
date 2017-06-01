@@ -7,12 +7,12 @@ This chapter describes the theories behind RegularNet, ResNet and DenseNet. Furt
 %https://drive.google.com/drive/folders/0Bw37nIXex8aXZC02T2FDdk1IaTA
 A neural network can result in a test accuracy which exceeds all expectations and everybody is happy. Now, when the model is introduced to the industry the misclassification rate happened to be high. This could happen, because of a feature invariance in the images used to train the model. Feature invariance testing is a mayor scope of this project. Feature invariance testing can be done by transforming, scaling, occlusion and rotating images just to name a few, while in this project an investigation of the latter is done. Figure fig:FeatureInvarianceSummary shows fine the different features variances an image could have.
 
-\myFigure{FeatureInvariance}{A summary of different variances in image features \citep{FeatureInvariance_summary.png}}{fig:FeatureInvarianceSummary}{0.5}
+\myFigure{FeatureInvariance_summary.png}{A summary of different variances in image features \citep{FeatureInvariance_summary.png}}{fig:FeatureInvarianceSummary}{0.5}
 \FloatBarrier
 
 When transforming or scaling test images to verify the accuracy, interpolation can fill out the missing information and so the model might score a bit smaller in probability for a certain category, but it is most likely still higher than other categories and so this type of image variance often test well for invariance testing. This is also verified in RefToVisualizationArticle, as seen in figure FeatureInvariancePhotoseries, in which they test their model against test images, which have been transformed, scaled and rotated. The rotation of an images rearranges the pixels in another way than simple interpolation can solve. Instead of a sky always being in top now the sky is in the side and so rotation invariance test can be tough for the model to chew. The robustness of the model is tested in this project based on the rotation invariance of the model.
 
-\myFigure{FeatureInvariance}{Photoseries feature variances, rotation, in an image. \citep{FeatureInvariance_Photoseries.png}}{fig:FeatureInvariancePhotoseries}{0.5}
+\myFigure{FeatureInvariance_Photoseries.png}{Photoseries feature variances, rotation, in an image. \citep{FeatureInvariance_Photoseries.png}}{fig:FeatureInvariancePhotoseries}{0.5}
 \FloatBarrier
 
 \input{chapter/RegularNet}
