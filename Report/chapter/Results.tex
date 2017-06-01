@@ -77,15 +77,19 @@ with tf.Session() as sess:
 
 Listing \ref{lst:testing} show the scramble and label wise classification testing. In scramble classification 2000 samples of data is rotated from 0 to 350 degree, while the accuracy for these rotated images is calculated. A mean percentage for the failing classifications is printed alongside a plot of the accurcay from 0 to 350 degree rotations. The label wise classification run through all 10 labels (label 0 to 9), and collects and rotate images for the specific label. The accuracy for each rotated label classification is plotted. At last all the accuracy plots for all labels are plotted on one plot.
 
+\section{Scrambled Classification - Reading Guide}
+A scrambled classification has been performed. The test set consist of 2000 label wise mixed images. The images has been obtained from the Cifar-10 test batch.
+
+The tables has been created by taking the total amount of falsely classified images, and then it has been separated into the separate labels and the percentage which is shown represent the amount of falsely classified label.
+
+\section{Label wise Classification - Reading Guide}
+A label wise classification has been performed on 500 images from the Cifar-10 test batch. All the results for the separate labels can be seen in the following subsections. At the end a label wise collective plot consisting of all the separate labels in one plot has been created for comparison.
+All figures has \emph{Accuracy} on the y-axis and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position.
+
 \section{Deep Neural Net - RegularNet}
 \subsection{Total Accuracy}
 \subsection{Scrambled Classification}
-
-
-
 \subsection{Label wise Classification}
-A label wise classification has been performed on 500 images from the Cifar-10 test batch. All the results for the separate labels can be seen in the following subsections. At the end a label wise collective plot consisting of all the separate labels in one plot has been created for comparison.
-All figures has \emph{Accuracy} on the y-axis and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position.
 \subsubsection{Label 0 - Airplane}
 \myFigure{results/RegularNet/LabelWise/label0_500.PNG}{Label 0 - Airplane}{fig:airplane}{0.8}
 \FloatBarrier
@@ -141,9 +145,7 @@ All figures has \emph{Accuracy} on the y-axis and \emph{Degree} on the x-axis - 
 
 \subsection{Total Accuracy}
 \subsection{Scrambled Classification}
-A scrambled classification has been performed. The test set consist of 2000 label wise mixed images. The images has been obtained from the Cifar-10 test batch.
 
-Table \ref{table:falseclas} has been created by taking the total amount of falsely classified images, and then it has been separated into the separate labels and the percentage is used.
 \begin{table}[]
 	\centering
 	\caption{Percentage of falsely classified images separated into labels }
