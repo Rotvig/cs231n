@@ -1,1 +1,35 @@
 \section{Deep Residual Networks - ResNet}
+
+This section will elaborate on the implementaiton of ResNet used for this project. For the implementation python 2.7 and Jupyter is used. The implementation of the ResNet is from the github repository\footnote{\url{https://github.com/awjuliani/TF-Tutorials}}. 
+
+The ResNet implemented in the project consists of 34 layers, where a flatten layer and a softmax classifier layer is appended to the end of the ResNet. The first layer in the net is a normal convolutional layer. 25 of the layers are residual blocks, which also contains internal layers. After 5 residual blocks a pooling layer is added with a 3x3 filter and a stride with 2x2, meaning that a total of 5 pooling layers will be added to the net. At last a fully connected layer is added to the top with the flatten and softmax classifier. Adam is used as the activation function for the ResNet. The creation of the ResNet layers can be seen in listing \ref{lst:resloop}.
+
+\begin{lstlisting}[language=Python, label=lst:resloop, caption=For loop that creates the layers in the ResNet]
+layer1 = slim.conv2d(input_layer,64,[3,3],normalizer_fn=slim.batch_norm,scope='conv_'+str(0))
+for i in range(5):
+    for j in range(units_between_stride):
+        layer1 = resUnit(layer1,j + (i*units_between_stride))
+    layer1 = slim.conv2d(layer1,64,[3,3],stride=[2,2],normalizer_fn=slim.batch_norm,scope='conv_s_'+str(i))
+    
+top = slim.conv2d(layer1,10,[3,3],normalizer_fn=slim.batch_norm,activation_fn=None,scope='conv_top')
+
+output = slim.layers.softmax(slim.layers.flatten(top))
+\end{lstlisting}
+
+As seen in listing \ref{lst:resloop} the function resUnit is called to create a residual block. This function creates the residual block with the internal layers and returns the output from the block. The residual block consists of 2 batch normalization blocks and 2 convolutional layers. Between the convolutional layer and the batch layer a ReLU activation function is added. At last the output from the layers is added with the input, and this is how the shortcut connection is implemented. The code for creating a residual block can be seen in listing \ref{lst:resblock}.
+
+\begin{lstlisting}[language=Python, label=lst:resblock, caption=Function resUnit that creates the residual block]
+def resUnit(input_layer,i):
+    with tf.variable_scope("res_unit"+str(i)):
+        part1 = slim.batch_norm(input_layer,activation_fn=None)
+        part2 = tf.nn.relu(part1)
+        part3 = slim.conv2d(part2,64,[3,3],activation_fn=None)
+        part4 = slim.batch_norm(part3,activation_fn=None)
+        part5 = tf.nn.relu(part4)
+        part6 = slim.conv2d(part5,64,[3,3],activation_fn=None)
+        output = input_layer + part6
+        return output
+\end{lstlisting}
+
+When training neural networks the distribution of each layers input change, because of the parameters of the previous layers change\citep{BATCH}. This makes it hard to train models with nonlinearities as the training is slowed down because of a lower learning rate and careful paramter initialization. The solution to this problem is the batch normalization layers, which makes normalization a part of the nets architecture, by performing a normalization for each training batch. Batch normalization makes it possible to use a higher learning rate, and gives the freedom to care less about initialization. Batch normalization aslo acts as a regularier, and can in some cases eliminate the need for dropout.
+
