@@ -1,7 +1,6 @@
 ###### GAME PLAN ######
 
 Write Stuff
-	Abstract
 	Introduction
 	Theory
 		Feature Invariance
@@ -12,7 +11,7 @@ Write Stuff
 		Tensorflow			✔
 		Feature Invariance	✔
 		RegularNet
-		DenseNet
+		DenseNet			✔
 		ResNet
 		Training
 	Results
