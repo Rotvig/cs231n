@@ -18,7 +18,7 @@ output = slim.layers.softmax(slim.layers.flatten(top))
 
 As seen in listing \ref{lst:resloop} the function resUnit is called to create a residual block. This function creates the residual block with the internal layers and returns the output from the block. The residual block consists of 2 batch normalization blocks and 2 convolutional layers. Between the convolutional layer and the batch layer a ReLU activation function is added. At last the output from the layers is added with the input, and this is how the shortcut connection is implemented. The code for creating a residual block can be seen in listing \ref{lst:resblock}.
 
-\begin{lstlisting}[language=Python, label=lst:resblock, caption=Function resUnit that creates the residual block]
+\begin{lstlisting}[language=Python, label=lst:resblock, caption=resUnit function that creates the residual block]
 def resUnit(input_layer,i):
     with tf.variable_scope("res_unit"+str(i)):
         part1 = slim.batch_norm(input_layer,activation_fn=None)
@@ -31,5 +31,9 @@ def resUnit(input_layer,i):
         return output
 \end{lstlisting}
 
-When training neural networks the distribution of each layers input change, because of the parameters of the previous layers change\citep{BATCH}. This makes it hard to train models with nonlinearities as the training is slowed down because of a lower learning rate and careful paramter initialization. The solution to this problem is the batch normalization layers, which makes normalization a part of the nets architecture, by performing a normalization for each training batch. Batch normalization makes it possible to use a higher learning rate, and gives the freedom to care less about initialization. Batch normalization aslo acts as a regularier, and can in some cases eliminate the need for dropout.
+When training neural networks the distribution of each layers input change, because of the parameters of the previous layers change\citep{BATCH}. This makes it hard to train models with nonlinearities as the training is slowed down because of a lower learning rate and careful paramter initialization. The solution to this problem is the batch normalization layers, which makes normalization a part of the nets architecture, by performing a normalization for each training batch. Batch normalization makes it possible to use a higher learning rate, and gives the freedom to care less about initialization. Batch normalization aslo acts as a regularier, and can in some cases eliminate the need for dropout. 
+
+The visualization of the entire residual block can be seen in figure \ref{fig:resblock_imp}.
+
+\myFigure{ResNetBlock.png}{Visualization of the residual block shown in listing \ref{lst:resblock}.}{fig:resblock_imp}{0.35}
 
