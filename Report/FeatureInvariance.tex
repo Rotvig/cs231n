@@ -12,14 +12,16 @@ def RotateAndCalc(sess, images, labels):
     curAngle = 10
 
     #First run for original image
-    fAcc,fPrc = CalcTestAccuracy(sess, ConvertImages(images), labels, False)
+    fAcc,fPrc = CalcTestAccuracy(sess, ConvertImages(images),
+	 	labels, False)
     accList.append(fAcc)
     prcList = [x+y for x, y in zip(prcList, fPrc)]
 
     #Rotate 10 degree
     while curAngle < 360:
         print "Rotating degree " + str(curAngle)
-        rotImages = tf.contrib.image.rotate(ConvertImages(images), np.radians(curAngle))
+        rotImages = tf.contrib.image.rotate(ConvertImages(images), 
+			np.radians(curAngle))
 
         #Calc accuracy and failures for the rotated images
         sAcc, sPrc = CalcTestAccuracy(sess, rotImages, labels, True)
