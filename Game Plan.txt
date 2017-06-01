@@ -3,7 +3,7 @@
 Write Stuff
 	Introduction
 	Theory
-		Feature Invariance	Troels Færdg idag
+		Feature Invariance	Troels Færdig idag
 		RegularNet			Troels Færdig idag
 		DenseNet 			✔
 		ResNet 				✔
@@ -17,10 +17,10 @@ Write Stuff
 	Results
 		Test Methods		Peter Færdig idag
 		Results for all nets René Færdig idag (Troels Scrambled - 2000)
-	Discussion
-		Discuess the results Troels udkast til imorgen
-	Conclude
-		Conclude the report	Troels udkast til imorgen
+	Discussion 1-2 sider
+		Discuess the results Troels udkast til imorgen 8:15
+	Conclude 0.5 side
+		Conclude the report	Troels udkast til imorgen 8:15
 	Appendix
 		exercises  			✔ 
 		code				✔
