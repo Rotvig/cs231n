@@ -107,6 +107,7 @@ def relu_backward(dout, cache):
   #############################################################################
   # TODO: Implement the ReLU backward pass.                                   #
   #############################################################################
+  # This secures that ReLu never goes below zero
   out = np.maximum(0, x)
   out[out > 0 ] = 1
   dx = out * dout
