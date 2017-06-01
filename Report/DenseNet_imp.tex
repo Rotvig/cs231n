@@ -2,7 +2,7 @@
 
 This section will elaborate on the implemented DenseNet. The implementation is done in python 2.7 and Jupyter. The implementation of the DenseNet is from the github repository\footnote{\url{https://github.com/awjuliani/TF-Tutorials}}. Article \citep{DENSE} has been used as the basis for the implementation of the DenseNet.
 
-The DenseNet in this project consist of 12 layers where 5 layers are dense blocks, and 7 layers are convolutional layers. At the end of the DenseNet a flattern layer and softmax layer. Adam is used as activation function.
+The DenseNet in this project consist of 12 layers where 5 layers are dense blocks, and 7 layers are convolutional layers. At the end of the DenseNet a flatten layer and a softmax layer are applied. Adam is used as activation function.
 
 The creation of the 7 convolutional layers and 5 dense block's can be seen in listing \ref{lst:denseconvo}.
 
@@ -35,8 +35,10 @@ def denseBlock(input_layer,i,j):
 	return b
 \end{lstlisting}
 
+Listing \ref{lst:softmax} shows the last layer which is the softmax layer. This layer is appended to \emph{top} which contains all the previous layers.
+
 \begin{lstlisting}[language=Python, label=lst:softmax, caption=Softmax layer appended to the end of the DenseNet]
 output = slim.layers.softmax(slim.layers.flatten(top))
 \end{lstlisting}
 
-Listing \ref{lst:softmax} shows the last layer which is the softmax layer. This layer is appended to \emph{top} which contains all the previous layers.
+When all the layers are prepared the DenseNet is ready to be used with TensorFlow, and the training can commence.
