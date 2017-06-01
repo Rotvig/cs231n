@@ -20,7 +20,7 @@ top = slim.conv2d(layer1,10,[3,3],
 
 The convolutional layers has a filter size of 3 by 3, and a stride with 2 by 2. 
 
-The dense block's consist of 6 convolutional layers which are connected in a direct connection to all subsequent layers and have a filter size of 3 by 3. The code for creating the dense block's can be seen in listing \ref{lst:densenetblock}.
+The dense block's consist of 6 convolutional layers which are connected in a direct connection to all subsequent layers and have a filter size of 3 by 3. The code for creating the dense block's can be seen in listing \ref{lst:densenetblock}. The last convolutional layer is the top layer which is a fully connected layer.
 
 \begin{lstlisting}[language=Python, label=lst:densenetblock, caption=DenseNet Block function]
 def denseBlock(input_layer,i,j):
