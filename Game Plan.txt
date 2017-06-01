@@ -3,23 +3,24 @@
 Write Stuff
 	Introduction
 	Theory
-		Feature Invariance
-		RegularNet
+		Feature Invariance	Troels
+		RegularNet			Troels
 		DenseNet 			✔
 		ResNet 				✔
 	Implementation
 		Tensorflow			✔
 		Feature Invariance	✔
-		RegularNet
+		RegularNet			Troels
 		DenseNet			✔
 		ResNet
-		Training
+		Training			Troels
 	Results
-		Resulst for all nets
+		Test Methods		Peter
+		Results for all nets René
 	Discussion
-		Discuess the results
+		Discuess the results Peter/Troels/René
 	Conclude
-		Conclude the report
+		Conclude the report	Peter/Troels/René
 	Appendix
 		exercises  			✔ 
-		code
+		code				✔
