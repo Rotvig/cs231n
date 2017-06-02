@@ -52,3 +52,7 @@ Grading the models with 2 points for a best category model, 1 point for second b
 DenseNet   = 12 points out of 20 possible\\
 RegularNet = 10 points out of 20 possible\\
 ResNet     = 08 points out of 20 possible\\
+
+In table \ref{table:falseclasReg}, \ref{table:falseclasRes} and \ref{table:falseclas} from chapter \ref{chp:results} it can be seen that images of ships are the ones with highest misclassification rate, with around 12\% misclassification rate across the three networks.  Another label with high misclassification rate is the truck label. The labels with the lowest misclassification rate is the frog and the dog, meaning that these were the ones that the networks were best at classifying, despite of the rotations. For the RegularNet the frog has a misclassification rate of 7.8\%. For DenseNet and ResNet the dog has the lowest misclassification rate, with around 8.37\% for both networks, while the frog has a misclassification rate being just slighly above this.
+
+In chapter \ref{chp:results} on figure \ref{fig:colReg}, \ref{fig:colRes} and \ref{fig:colDense} it can be seen that the automobile images starts out with the highest accuracy, when not rotated. After rotating the automobile images the accuracy drops drastically to around 10\% accuracy. It can also be seen that the accuracy for the frog images starts out around 30\%, but the curve for the accuracy never drops below 10\%. The curve of the accuracy for rotated ship images drops below 10\% and is alongside horse and truck images by far the lowest accuracy curve.
