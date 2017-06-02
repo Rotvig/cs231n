@@ -1,0 +1,26 @@
+###### GAME PLAN ######
+
+Write Stuff
+	Introduction
+	Theory
+		Feature Invariance		✔
+		RegularNet				✔
+		DenseNet 				✔
+		ResNet 					✔
+	Implementation
+		Tensorflow				✔
+		Feature Invariance		✔
+		RegularNet				Troels
+		DenseNet				✔
+		ResNet					✔
+		Training				Troels
+	Results
+		Test Methods			✔
+		Results for all nets 	✔
+	Discussion 1-2 sider
+		Discuess the results 	Troels udkast til imorgen 8:15
+	Conclude 0.5 side
+		Conclude the report		Troels udkast til imorgen 8:15
+	Appendix
+		exercises  				✔ 
+		code					✔

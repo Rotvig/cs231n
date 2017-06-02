@@ -1,0 +1,95 @@
+\chapter{Discussion}
+\label{chp:discussion}
+
+\subsection{Implementation Experience}
+
+The main purpose of this project was to compare the three neural networks a deep neural network, a deep residual network and a densely connected convolutional network. The different networks have different depth and different architecture. The first experience was the different time and memory required to train the models on the small images from the CIFAR-10 data set. On a nvidia geforce gtx 960 2gb Graphics Processing Unit, it took around two hours to train the RegularNet, two hours and 45 minutes to train the ResNet, while with the DenseNet it was not possible to train the model at all, due to memory shortage in the 2gb RAM. Training on a 16gb CPU all night resulted in a trained model from the DenseNet.
+
+A bug was discovered in the used implementation from the github repository TF-Tutorials\footnote{\url{https://github.com/awjuliani/TF-Tutorials}}. The bug was found in the preparation of the images before the training of the model. There was a bug in the reshaping of the images, which resulted in wrong images. This affected the classification of the test images, and by correcting this bug, better classification results where achieved.
+
+\subsection{Test Accuracy}
+
+%\myFigure{Test_Error_Plots.png}{Fully Connected Neural Network Architecture \citep{Test_Error_Plots}}{fig:TestErrorPlots}{0.5}
+\FloatBarrier
+ \todo{Hvor er dette billede henne? (det ligger ikke på git) og hvorfor er der en citep til et test error plots? Dette er heller ikke tilføjet i biblografien.}
+
+The three models were tested to see which one would get the best test accuracy trained and tested on the original CIFAR-10 data set. All models had a 20.000 steps run and the same data folds to train on. The batchsize was 64 images randomly chosen from one fold at a time, so to neglect the randomness factor in the model accuracy, the training was made over 26 epochs. In the graph of figure \ref{fig:TestErrorPlots} it is seen that all the test errors have flattened out when the training was done. As expected the RegularNet had the slowest ascend to the stable test error percentage at approximately 1300 steps or approximately 16.5 epochs of trained data. ResNet and DenseNet both settles their test error percentage around 75 steps or 9.5 epochs, but DenseNet seems to be more controlled and with less deviation, while the ResNet variates in the increasing accuracy. The highest test accuracy of the three models was found by the DenseNet model with an accuracy of 0.88 percentage. Next the ResNet model had a best test accuracy of 0.874. While the 0.06 percentage might seem like a small change, it can be a huge difference in big data analysis. The lowest ranking of the models was the RegularNet with a average test accuracy of 0.867.
+
+\subsection{Feature Invariance}
+
+Feature invariance was tested, and it provides the model response from each model to the rotated images. The models behave differently to the images being rotated. For some labels the 90, 180 and 270 degree angle rotation, images are being classified well compared to the other angles. The biggest surprise of the project is the test accuracy when only applying images of one label for testing. Only the automobile label scored a test accuracy above 50\%. The test of the models on scrambled images across all labels the test accuracy was for each model above 80\% accuracy.
+
+The three models all have the same problems with rotation as seen in figure ???\todo{Hvilken figur ? og der skal være reference}.
+
+\todo{Grundlæggende problem: Der er ingen af dine billeder som er indsat korrekt (se hvordan det er gjordt i andre afsnit såsom Theory/DenseNet. Udover det så refererer du ikke til alle dine billeder - hvis et billed ikke er referetet med en \ref{fig:billede} så skal det fjernes. Desuden har du lavet en \citep{} i alle dine figur tekster. Men du har ikke tilføjet noget til bibliografien. \citep bruges kun til at referer til artikler eller bøger fra bibliografien.)}
+%\myFigure{Scrambled Ima\\t\to\tod\todoges.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using Scrambled Images  \citep{Scrambled Images}}{fig:Scrambled Images}{0.5}
+\FloatBarrier
+
+In label 0, the models are trying to detect an airplane. From this plot is estimated to be RegularNet, ResNet and DensNet in the respected order to be chosen for a model. This is counter productive from the previous subchapters, so this behavior is an interesting behavior.
+
+%\myFigure{Airplane Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using Airplane Images  \citep{Airplane Images}}{fig:Airplane Images}{0.5}
+\FloatBarrier
+
+In the category 1, the models are trying to detect an Automobile. From this plot is estimated to be RegularNet, DensNet and ResNet in the respected order to be chosen for a model. DensNet scores highest in the original image position, but this still proves to be less tolerant for rotation variance. 
+
+%\myFigure{Automobile Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using Automobile Images  \citep{Automobile Images}}{fig:Automobile Images}{0.5}
+\FloatBarrier 
+
+In the category 2, the models are trying to detect an Birds. From this plot is estimated to be ResNet, DensNet and RegularNet in the respected order to be chosen for a model. DensNet scores the highest peaks along the function, but ResNet have a better average accuracy with respect to rotation in the images. 
+
+%\myFigure{Birds Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using Birds Images  \citep{Birds Images}}{fig:Birds Images}{0.5}
+\FloatBarrier 
+
+In the category 3, the models are trying to detect an Cats. From this plot is estimated to be RegularNet, DensNet and ResNet in the respected order to be chosen for a model. DensNet scores highest in the original image position, but this still proves to be less tolerant for rotation variance. 
+
+%\myFigure{Cats Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using Cats Images  \citep{Cats Images}}{fig:Cats Images}{0.5}
+\FloatBarrier 
+
+In the category 4, the models are trying to detect an Deer. From this plot is estimated to be ResNet, DensNet and RegularNet in the respected order to be chosen for a model. 
+
+%\myFigure{Deer Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using Deer Images  \citep{Deer Images}}{fig:Deer Images}{0.5}
+\FloatBarrier 
+
+In the category 5, the models are trying to detect an Dog. From this plot is estimated to be ResNet, RegularNet and DensNet in the respected order to be chosen for a model.
+
+%\myFigure{Dog Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using Dog Images  \citep{Dog Images}}{fig:Dog Images}{0.5}
+\FloatBarrier 
+
+In the category 6, the models are trying to detect an frog. From this plot is estimated to be DensNet, RegularNet and ResNet in the respected order to be chosen for a model. 
+
+%\myFigure{frog Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using frog Images  \citep{frog Images}}{fig:frog Images}{0.5}
+\FloatBarrier 
+
+In the category 7, the models are trying to detect an horse. From this plot is estimated to be DensNet, RegularNet and ResNet in the respected order to be chosen for a model.
+
+%\myFigure{horse Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using horse Images  \citep{horse Images}}{fig:horse Images}{0.5}
+\FloatBarrier 
+
+In the category 8, the models are trying to detect an ship. From this plot is estimated to be DensNet, RegularNet and ResNet in the respected order to be chosen for a model. 
+
+%\myFigure{ship Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using ship Images  \citep{ship Images}}{fig:ship Images}{0.5}
+\FloatBarrier 
+
+In the category 9, the models are trying to detect an Dog. From this plot is estimated to be DensNet, ResNet and RegularNet in the respected order to be chosen for a model. 
+
+%\myFigure{truck Images.png}{Test Accuracy for a DensNet, ResNet and RegularNet model using truck Images  \citep{truck Images}}{fig:truck Images}{0.5}
+\FloatBarrier
+
+Grading the models with 2 points for a best category model, 1 point for second best category model and 0 for the worst category model gives the following results:
+DenseNet   = 12 points out of 20 possible\\
+RegularNet = 10 points out of 20 possible\\
+ResNet     = 08 points out of 20 possible\\
+
+The subjective best network over all rotational angles is for
+(0) An Airplane   = RegularNet\\
+(1) An Automobile = RegularNet\\
+(2) A Bird        = ResNet\\ 
+(3) A Cat         = RegularNet\\
+(4) A Deer        = ResNet\\
+(5) A Dog         = ResNet\\
+(6) A Frog        = DensNet\\
+(7) A Horse       = DensNet\\
+(8) A Ship        = DensNet\\
+(9) A Truck       = DensNet\\
+
+Finally all categories are plotted on the same plot to show the models invariance to rotation across all labels.

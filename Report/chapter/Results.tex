@@ -1,0 +1,245 @@
+\chapter{Results}
+\label{chp:results}
+
+This chapter covers the results obtained in this project. It has been separated into the parts Test Method, and the the results for the three different networks.
+
+\section{Test Method}
+
+This section will describe the test methods used to test the different models. The test methods will produce a set of results for each model, which will be compared in the discussion chapter.
+
+\begin{lstlisting}[language=Python, label=lst:CalcAcc, caption=Function to calculate the test accuracy for a model]
+# Calculate test accuracy
+def CalcTestAccuracy(sess, data, labels, isTransformed):
+    
+    percentageList = np.zeros(10)
+    
+    yT = np.reshape(np.array(labels),[len(labels)])
+    if(isTransformed):
+        lossT,yP = sess.run([loss,output],
+        	feed_dict={input_layer:data.eval(),label_layer:yT})
+    else:
+        lossT,yP = sess.run([loss,output],
+        	feed_dict={input_layer:data,label_layer:yT})
+    
+    equal = np.equal(yT,np.argmax(yP,1))
+    accuracy = np.sum(equal)/float(len(yT))
+    print "Test set accuracy: " + str(accuracy)
+    
+    for i in range(0,len(yT)):
+        if equal[i] == False:
+            index = yT[i]
+            percentageList[index] += 1
+    
+    return accuracy, percentageList
+\end{lstlisting}
+
+Listing \ref{lst:CalcAcc} shows the code for calculating the test accuracy for a model. A Tensorflow session is passed to the function, which makes it possible to run the session, and collect the classifications for the passed data. The classification from the model is checked against the true label, and if the model classified correctly, true will be returned. If the model classified wrong, false will be returned. To calculate the accuray the sum of all the correct classifications is divided with the total amount of data samples. For each wrong classification the percentageList counts one up on the index for the label of the wrong classification. Meaning that if an airplane (0) was wrongly classified, the percentageList would be counted one up at index 0. This is in the RotateAndCalc function used to calculate the failure percentage belonging to each label.
+
+The testing is seperated into scramble classification and label wise classification. Scramble classification is where the data used is selected across all the labels, where label wise is where the data used for classification is only for one specific label at a time.
+
+\begin{lstlisting}[language=Python, label=lst:testing, caption=Testing the classification abilities for the model]
+with tf.Session() as sess:
+    saver.restore(sess, "./trainingmodels/DenseNet/model_densenet.ckpt")
+    print "Model restored."
+    
+    numbOfImg = 1000 #Number of images to be found
+    finalLabelList = [] #List with each labellist inside it
+    
+    #Scramble classification
+    print "Scramble classification"
+    sImages, sLabels = GetScrambleData(2000)
+    sAcc, sPrc = RotateAndCalc(sess, sImages, sLabels)
+    print "Percentage for failing classification: "
+    print sPrc
+    print "Total accuracy for the test set: " + str(sAcc[0])
+    PlotAcc(sAcc)
+    
+    #Label wise classification
+    print "Label wise classification"
+    for label in range(0,10): #Label value 0-9
+        print "Classifying on label: " + str(label)
+        images, labels = GetLabelData(numbOfImg)
+        lAcc,_ = RotateAndCalc(sess, images, labels)
+        finalLabelList.append(lAcc)
+        PlotAcc(lAcc)
+    
+    # Print all the label wise in same plot
+    Labels = ['Airplane', 'Automobile', 'Bird', 'Cat', 'Deer', 'Dog', 
+    		'Frog', 'Horse', 'Ship', 'Truck']
+    for i in range(len(finalLabelList)):
+        x = np.arange(0, 360, 10)
+        plt.xlabel('Degree')
+        plt.ylabel('Accuracy')
+        plt.title('Accuracy with rotating images')
+        plt.plot(x,finalLabelList[i], label=Labels[i])
+
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+    plt.show()
+\end{lstlisting}
+
+Listing \ref{lst:testing} show the scramble and label wise classification testing. In scramble classification 2000 samples of data is rotated from 0 to 350 degree, while the accuracy for these rotated images is calculated. A mean percentage for the failing classifications is printed alongside a plot of the accurcay from 0 to 350 degree rotations. The label wise classification run through all 10 labels (label 0 to 9), and collects and rotate images for the specific label. The accuracy for each rotated label classification is plotted. At last all the accuracy plots for all labels are plotted on one plot.
+
+\section{Scrambled Classification - Reading Guide}
+A scrambled classification has been performed. The test set consist of 2000 label wise mixed images. The images has been obtained from the Cifar-10 test batch.
+All figures has \emph{Accuracy} on the y-axis which is the mean of all the accuracies and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position. A sample has been taking for each 10 degree the image has been rotated.
+
+The tables has been created by taking the total amount of falsely classified images, and then it has been separated into the separate labels and the percentage which is shown represent the amount of falsely classified label.
+
+\section{Label wise Classification - Reading Guide}
+A label wise classification has been performed on 500 images from the Cifar-10 test batch. All the results for the separate labels can be seen in the following subsections. At the end a label wise collective plot consisting of all the separate labels in one plot has been created for comparison.
+All figures has \emph{Accuracy} on the y-axis which is the mean of all the accuracies and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position. A sample has been taking for each 10 degree the image has been rotated.
+
+\section{Deep Neural Net - RegularNet}
+This section is for all the results of the Regular neural net.
+\subsection{Scrambled Classification}
+\myFigure{results/RegularNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees (RegularNet)}{fig:scramReg}{0.8}
+\FloatBarrier
+
+\begin{table}[]
+	\centering
+	\caption{Percentage of falsely classified images separated into labels (RegularNet)}
+	\label{table:falseclasReg}
+	\begin{tabular}{llllllllll}
+		Airplane & Automobile & Bird     & Cat    & Deer     & Dog     & Frog   & Horse    & Ship         & Truck         \\
+		8.58 \%  & 8.93 \%    & 11.197 \% & 10.75 \% & 9.6 \% & 8.43 \% & 7.8 \% & 11.22 \% & 12.17 \% & 11.32 \%
+	\end{tabular}
+\end{table}
+\FloatBarrier
+\subsection{Label wise Classification}
+\subsubsection{Label 0 - Airplane}
+\myFigure{results/RegularNet/LabelWise/label0_500.PNG}{Label 0 - Airplane (RegularNet)}{fig:airplane}{0.8}
+\FloatBarrier
+\subsubsection{Label 1 - Automobile}
+\myFigure{results/RegularNet/LabelWise/label1_500.PNG}{Label 1 - Automobile (RegularNet)}{fig:automobile}{0.8}
+\FloatBarrier
+\subsubsection{Label 2 - Bird}
+\myFigure{results/RegularNet/LabelWise/label2_500.PNG}{Label 2 - Bird (RegularNet)}{fig:bird}{0.8}
+\FloatBarrier
+\subsubsection{Label 3 - Cat}
+\myFigure{results/RegularNet/LabelWise/label3_500.PNG}{Label 3 - Cat (RegularNet)}{fig:cat}{0.8}
+\FloatBarrier
+\subsubsection{Label 4 - Deer}
+\myFigure{results/RegularNet/LabelWise/label4_500.PNG}{Label 4 - Deer (RegularNet)}{fig:deer}{0.8}
+\FloatBarrier
+\subsubsection{Label 5 - Dog}
+\myFigure{results/RegularNet/LabelWise/label5_500.PNG}{Label 5 - Dog (RegularNet)}{fig:dog}{0.8}
+\FloatBarrier
+\subsubsection{Label 6 - Frog}
+\myFigure{results/RegularNet/LabelWise/label6_500.PNG}{Label 6 - Frog (RegularNet)}{fig:intro}{0.8}
+\FloatBarrier
+\subsubsection{Label 7 - Horse}
+\myFigure{results/RegularNet/LabelWise/label7_500.PNG}{Label 7 - Horse (RegularNet)}{fig:horse}{0.8}
+\FloatBarrier
+\subsubsection{Label 8 - Ship}
+\myFigure{results/RegularNet/LabelWise/label8_500.PNG}{Label 0 - Ship (RegularNet)}{fig:ship}{0.8}
+\FloatBarrier
+\subsubsection{Label 9 - Truck}
+\myFigure{results/RegularNet/LabelWise/label9_500.PNG}{Label 9 - Truck (RegularNet)}{fig:truck}{0.8}
+\FloatBarrier
+\subsubsection{Collective Label Wise Results}
+\myFigure{results/RegularNet/LabelWise/all_500.PNG}{Collective label wise results (RegularNet)}{fig:colReg}{1}
+\FloatBarrier
+
+\section{Deep Residual Networks - ResNet}
+This section is for all the results of the Deep residual network.
+\subsection{Scrambled Classification}
+\myFigure{results/ResNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees (ResNet)}{fig:scramRes}{0.8}
+\FloatBarrier
+
+\begin{table}[]
+	\centering
+	\caption{Percentage of falsely classified images separated into labels (ResNet)}
+	\label{table:falseclasRes}
+	\begin{tabular}{llllllllll}
+		Airplane & Automobile & Bird     & Cat    & Deer     & Dog     & Frog   & Horse    & Ship         & Truck         \\
+		9.7 \%  & 9.1 \%    & 10.17 \% & 9.8 \% & 10.1 \% & 8.4\% & 8.6 \% & 11.22 \% & 11.47 \% & 11.47 \%
+	\end{tabular}
+\end{table}
+\FloatBarrier
+\subsection{Label Wise Classification}
+\subsubsection{Label 0 - Airplane}
+\myFigure{results/ResNet/LabelWise/label0_500.PNG}{Label 0 - Airplane (ResNet)}{fig:airplaneRes}{0.8}
+\FloatBarrier
+\subsubsection{Label 1 - Automobile}
+\myFigure{results/ResNet/LabelWise/label1_500.PNG}{Label 1 - Automobile (ResNet)}{fig:automobileRes}{0.8}
+\FloatBarrier
+\subsubsection{Label 2 - Bird}
+\myFigure{results/ResNet/LabelWise/label2_500.PNG}{Label 2 - Bird (ResNet)}{fig:birdRes}{0.8}
+\FloatBarrier
+\subsubsection{Label 3 - Cat}
+\myFigure{results/ResNet/LabelWise/label3_500.PNG}{Label 3 - Cat (ResNet)}{fig:catRes}{0.8}
+\FloatBarrier
+\subsubsection{Label 4 - Deer}
+\myFigure{results/ResNet/LabelWise/label4_500.PNG}{Label 4 - Deer (ResNet)}{fig:deerRes}{0.8}
+\FloatBarrier
+\subsubsection{Label 5 - Dog}
+\myFigure{results/ResNet/LabelWise/label5_500.PNG}{Label 5 - Dog (ResNet)}{fig:dogRes}{0.8}
+\FloatBarrier
+\subsubsection{Label 6 - Frog}
+\myFigure{results/ResNet/LabelWise/label6_500.PNG}{Label 6 - Frog (ResNet)}{fig:introRes}{0.8}
+\FloatBarrier
+\subsubsection{Label 7 - Horse}
+\myFigure{results/ResNet/LabelWise/label7_500.PNG}{Label 7 - Horse (ResNet)}{fig:horseRes}{0.8}
+\FloatBarrier
+\subsubsection{Label 8 - Ship}
+\myFigure{results/ResNet/LabelWise/label8_500.PNG}{Label 0 - Ship (ResNet)}{fig:shipRes}{0.8}
+\FloatBarrier
+\subsubsection{Label 9 - Truck}
+\myFigure{results/ResNet/LabelWise/label9_500.PNG}{Label 9 - Truck (ResNet)}{fig:truckRes}{0.8}
+\FloatBarrier
+\subsubsection{Collective Label Wise Results}
+\myFigure{results/ResNet/LabelWise/all_500.PNG}{Collective label wise results (ResNet)}{fig:colRes}{1}
+\FloatBarrier
+
+\section{Densely Connected Convolutional Networks - DenseNet}
+This section is for all the results of the Densely connected convolutional network.
+
+\subsection{Scrambled Classification}
+
+\myFigure{results/DenseNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees}{fig:scram}{0.8}
+\FloatBarrier
+
+\begin{table}[]
+	\centering
+	\caption{Percentage of falsely classified images separated into labels }
+	\label{table:falseclas}
+	\begin{tabular}{llllllllll}
+		Airplane & Automobile & Bird     & Cat    & Deer     & Dog     & Frog   & Horse    & Ship         & Truck         \\
+		9.71 \%  & 9.07 \%    & 10.17 \% & 9.8 \% & 10.12 \% & 8.38 \% & 8.6 \% & 11.22 \% & 11.468458 \% & 11.4684576 \%
+	\end{tabular}
+\end{table}
+\FloatBarrier
+\subsection{Label wise Classification}
+\subsubsection{Label 0 - Airplane}
+\myFigure{results/DenseNet/LabelWise/label0_500.PNG}{Label 0 - Airplane (DenseNet)}{fig:airplaneDense}{0.8}
+\FloatBarrier
+\subsubsection{Label 1 - Automobile}
+\myFigure{results/DenseNet/LabelWise/label1_500.PNG}{Label 1 - Automobile (DenseNet)}{fig:automobileDense}{0.8}
+\FloatBarrier
+\subsubsection{Label 2 - Bird}
+\myFigure{results/DenseNet/LabelWise/label2_500.PNG}{Label 2 - Bird (DenseNet)}{fig:birdDense}{0.8}
+\FloatBarrier
+\subsubsection{Label 3 - Cat}
+\myFigure{results/DenseNet/LabelWise/label3_500.PNG}{Label 3 - Cat (DenseNet)}{fig:catDense}{0.8}
+\FloatBarrier
+\subsubsection{Label 4 - Deer}
+\myFigure{results/DenseNet/LabelWise/label4_500.PNG}{Label 4 - Deer (DenseNet)}{fig:deerDense}{0.8}
+\FloatBarrier
+\subsubsection{Label 5 - Dog}
+\myFigure{results/DenseNet/LabelWise/label5_500.PNG}{Label 5 - Dog (DenseNet)}{fig:dogDense}{0.8}
+\FloatBarrier
+\subsubsection{Label 6 - Frog}
+\myFigure{results/DenseNet/LabelWise/label6_500.PNG}{Label 6 - Frog (DenseNet)}{fig:introDense}{0.8}
+\FloatBarrier
+\subsubsection{Label 7 - Horse}
+\myFigure{results/DenseNet/LabelWise/label7_500.PNG}{Label 7 - Horse (DenseNet)}{fig:horseDense}{0.8}
+\FloatBarrier
+\subsubsection{Label 8 - Ship}
+\myFigure{results/DenseNet/LabelWise/label8_500.PNG}{Label 0 - Ship (DenseNet)}{fig:shipDense}{0.8}
+\FloatBarrier
+\subsubsection{Label 9 - Truck}
+\myFigure{results/DenseNet/LabelWise/label9_500.PNG}{Label 9 - Truck (DenseNet)}{fig:truckDense}{0.8}
+\FloatBarrier
+\subsubsection{Collective Label Wise Results}
+\myFigure{results/DenseNet/LabelWise/all_500.PNG}{Collective label wise results (DenseNet)}{fig:colDense}{1}
+\FloatBarrier
