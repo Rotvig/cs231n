@@ -91,6 +91,11 @@ All figures has \emph{Accuracy} on the y-axis which is the mean of all the accur
 
 \section{Deep Neural Net - RegularNet}
 This section is for all the results of the Regular neural net.
+
+\subsection{Classification Accuracy}
+The mean classification accuracy of the RegularNet is 0.868.
+\myFigure{results/RegularNet/classiacc.PNG}{Test Accuracy (RegularNet)}{fig:testaccreg}{0.8}
+\FloatBarrier
 \subsection{Scrambled Classification}
 \myFigure{results/RegularNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees (RegularNet)}{fig:scramReg}{0.8}
 \FloatBarrier
@@ -123,6 +128,11 @@ This section is for all the results of the Regular neural net.
 
 \section{Deep Residual Networks - ResNet}
 This section is for all the results of the Deep residual network.
+\subsection{Classification Accuracy}
+The mean classification accuracy of the ResNet is 0.874.
+\myFigure{results/ResNet/classiacc.PNG}{Test Accuracy (ResNet)}{fig:testaccres}{0.8}
+\FloatBarrier
+
 \subsection{Scrambled Classification}
 \myFigure{results/ResNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees (ResNet)}{fig:scramRes}{0.8}
 \FloatBarrier
@@ -156,14 +166,19 @@ This section is for all the results of the Deep residual network.
 \section{Densely Connected Convolutional Networks - DenseNet}
 This section is for all the results of the Densely connected convolutional network.
 
+\subsection{Classification Accuracy}
+The mean classification accuracy of the DenseNet is 0.88.
+\myFigure{results/DenseNet/classiacc.PNG}{Test Accuracy (DenseNet)}{fig:testaccdense}{0.8}
+\FloatBarrier
+
 \subsection{Scrambled Classification}
 
-\myFigure{results/DenseNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees}{fig:scram}{0.8}
+\myFigure{results/DenseNet/scrambled/scrambled2000.PNG}{2000 images with rotation from 0 - 360 degrees (DenseNet)}{fig:scram}{0.8}
 \FloatBarrier
 
 \begin{table}[]
 	\centering
-	\caption{Percentage of falsely classified images separated into labels }
+	\caption{Percentage of falsely classified images separated into labels (DenseNet)}
 	\label{table:falseclas}
 	\begin{tabular}{llllllllll}
 		Airplane & Automobile & Bird     & Cat    & Deer     & Dog     & Frog   & Horse    & Ship         & Truck         \\
