@@ -3,24 +3,24 @@
 Write Stuff
 	Introduction
 	Theory
-		Feature Invariance		✔
-		RegularNet				✔
+		Feature Invariance		Troels færddigøre rettelser til Lørdagn den 3 juni
+		RegularNet				Troels færddigøre rettelser til Lørdagn den 3 juni
 		DenseNet 				✔
 		ResNet 					✔
 	Implementation
 		Tensorflow				✔
 		Feature Invariance		✔
-		RegularNet				Troels
+		RegularNet				Troels færddigøre rettelser til Lørdagn den 3 juni
 		DenseNet				✔
 		ResNet					✔
-		Training				Troels
+		Training				Troels færddigøre rettelser til Lørdagn den 3 juni
 	Results
 		Test Methods			✔
 		Results for all nets 	✔
 	Discussion 1-2 sider
-		Discuess the results 	Troels udkast til imorgen 8:15
+		Discuess the results 	Troels færddigøre rettelser til Lørdagn den 3 juni
 	Conclude 0.5 side
-		Conclude the report		Troels udkast til imorgen 8:15
+		Conclude the report		✔
 	Appendix
 		exercises  				✔ 
 		code					✔
