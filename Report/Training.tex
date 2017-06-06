@@ -39,21 +39,25 @@ The images are forwarded through the network as shown in \ref{lst:Parameter_upda
 For each tenth step the accuracy is printed, while for each 100 step a small part of the test data is forwarded through the model. The test data does not update the model, but it only shows how well the model is progressing through the training. When the training is done, the model is saved for later analysis through saver.save.
 
 \begin{lstlisting}[language=Python, label=lst:Parameter_updating, caption=Parameter updating: loss and accuracy are saved and they are tested every 100 steps]
-	_,lossA,yP,LO = sess.run([update,loss,output,label_oh],feed_dict={input_layer:x,label_layer:np.hstack(y)})
+	_,lossA,yP,LO = sess.run([update,loss,output,label_oh],feed_dict=
+	{input_layer:x,label_layer:np.hstack(y)})
 	accuracy = np.sum(np.equal(np.hstack(y),np.argmax(yP,1)))/float(len(y))
 	l.append(lossA)
 	a.append(accuracy)
-	if i % 10 == 0: print "Step: " + str(i) + " Loss: " + str(lossA) + " Accuracy: " + str(accuracy)
+	if i % 10 == 0: print "Step: " + str(i) + " Loss: " + str(lossA) +
+	 " Accuracy: " + str(accuracy)
 	if i % 100 == 0: 
 		point = np.random.randint(0,10000-500)
 		xT = ConvertImages(cifarT['data'][point:point+500]) 
 		yT = np.reshape(np.array(cifarT['labels'])[point:point+500],[500])
-		lossT,yP = sess.run([loss,output],feed_dict={input_layer:xT,label_layer:yT})
+		lossT,yP = sess.run([loss,output],feed_dict=
+		{input_layer:xT,label_layer:yT})
 		accuracy = np.sum(np.equal(yT,np.argmax(yP,1)))/float(len(yT))
 		aT.append(accuracy)
 		print "Test set accuracy: " + str(accuracy)
 	i+= 1
-save_path = saver.save(sess, "./trainingmodels/RegularNet/model_regularnet.ckpt")
+save_path = saver.save(sess, "./trainingmodels/RegularNet/
+model_regularnet.ckpt")
 print "Model saved in file: " + str(save_path)
 sess.close()
 \end{lstlisting}
