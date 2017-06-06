@@ -1,26 +1,26 @@
-###### GAME PLAN ######
+﻿###### GAME PLAN ######
 
 Write Stuff
 	Introduction
 	Theory
-		Feature Invariance		Troels færddigøre rettelser til Lørdagn den 3 juni
-		RegularNet				Troels færddigøre rettelser til Lørdagn den 3 juni
+		Feature Invariance			✔
+		RegularNet				✔
 		DenseNet 				✔
 		ResNet 					✔
 	Implementation
 		Tensorflow				✔
-		Feature Invariance		✔
-		RegularNet				Troels færddigøre rettelser til Lørdagn den 3 juni
+		Feature Invariance			✔
+		RegularNet				✔
 		DenseNet				✔
 		ResNet					✔
-		Training				Troels færddigøre rettelser til Lørdagn den 3 juni
+		Training				✔
 	Results
-		Test Methods			✔
-		Results for all nets 	✔
+		Test Methods				✔
+		Results for all nets 			✔
 	Discussion 1-2 sider
-		Discuess the results 	Troels færddigøre rettelser til Lørdagn den 3 juni
+		Discuess the results 			Troels færddigøre rettelser til Lørdagn den 3 juni
 	Conclude 0.5 side
-		Conclude the report		✔
+		Conclude the report			✔
 	Appendix
 		exercises  				✔ 
 		code					✔
