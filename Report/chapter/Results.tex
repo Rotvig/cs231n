@@ -1,7 +1,7 @@
 \chapter{Results}
 \label{chp:results}
 
-This chapter covers the results obtained in this project. It has been separated into the parts Test Method, and the the results for the three different networks.
+This chapter covers the results obtained in this project. It has been separated into the parts, Test Method and the the results for the three different networks.
 
 \section{Test Method}
 
@@ -77,17 +77,17 @@ with tf.Session() as sess:
     plt.show()
 \end{lstlisting}
 
-Listing \ref{lst:testing} show the scramble and label wise classification testing. In scramble classification 2000 samples of data is rotated from 0 to 350 degree, while the accuracy for these rotated images is calculated. A mean percentage for the failing classifications is printed alongside a plot of the accurcay from 0 to 350 degree rotations. The label wise classification run through all 10 labels (label 0 to 9), and collects and rotate images for the specific label. The accuracy for each rotated label classification is plotted. At last all the accuracy plots for all labels are plotted on one plot.
+Listing \ref{lst:testing} show the scramble and label wise classification testing. In scramble classification 2000 samples of data is rotated from 0 to 350 degree, while the accuracy for these rotated images is calculated. A mean percentage for the failing classifications is printed alongside a plot of the accuracy from 0 to 350 degree rotations. The label wise classification run through all 10 labels (label 0 to 9), and collects and rotate images for the specific label. The accuracy for each rotated label classification is plotted. At last all the accuracy plots for all labels are plotted on one plot.
 
 \section{Scrambled Classification - Reading Guide}
 A scrambled classification has been performed. The test set consist of 2000 label wise mixed images. The images has been obtained from the Cifar-10 test batch.
-All figures has \emph{Accuracy} on the y-axis which is the mean of all the accuracies and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position. A sample has been taking for each 10 degree the image has been rotated.
+All figures have \emph{Accuracy} on the y-axis, which is the mean of all the accuracies and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position. A sample has been taking for each 10 degree the image has been rotated.
 
 The tables has been created by taking the total amount of falsely classified images, and then it has been separated into the separate labels and the percentage which is shown represent the amount of falsely classified label.
 
 \section{Label wise Classification - Reading Guide}
-A label wise classification has been performed on 500 images from the Cifar-10 test batch. All the results for the separate labels can be seen in the following subsections. At the end a label wise collective plot consisting of all the separate labels in one plot has been created for comparison.
-All figures has \emph{Accuracy} on the y-axis which is the mean of all the accuracies and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position. A sample has been taking for each 10 degree the image has been rotated.
+A label wise classification has been performed on 500 images from the Cifar-10 test batch. All the results for the separate labels can be seen in the following subsections. At the end a label wise collective plot, consisting of all the separate labels in one plot, has been created for comparison.
+All figures have \emph{Accuracy} on the y-axis which is the mean of all the accuracies and \emph{Degree} on the x-axis - degrees represent the amount the image has been rotated. 0 degrees is the original position. A sample has been taking for each 10 degree the image has been rotated.
 
 \section{Deep Neural Net - RegularNet}
 This section is for all the results of the Regular neural net.

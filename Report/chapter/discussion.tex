@@ -3,9 +3,9 @@
 
 \subsection{Implementation Experience}
 
-The main purpose of this project was to compare the three neural networks a deep neural network, a deep residual network and a densely connected convolutional network. The different networks have different depth and different architecture. The first experience was the different time and memory required to train the models on the small images from the CIFAR-10 data set. On a nvidia geforce gtx 960 2gb Graphics Processing Unit, it took about two hours to train the RegularNet, two hours and 45 minutes to train the ResNet, while for the DenseNet it was not possible to train the model at all, due to memory shortage in the 2gb RAM. Training on a 16gb CPU all night resulted in a trained model from the DenseNet.
+The main purpose of this project was to compare the three neural networks a deep neural network, a deep residual network and a densely connected convolutional network. The different networks have different depth and different architecture. The first experience was the different time and memory required to train the models on the small images from the CIFAR-10 data set. On a nvidia geforce gtx 960 2gb Graphics Processing Unit, training time was about two hours to train the RegularNet, two hours and 45 minutes to train the ResNet, while for the DenseNet it was not possible to train the model at all, due to memory shortage in the 2gb RAM. Training on a 16gb CPU all night resulted in a trained model from the DenseNet.
 
-A bug was discovered in the used implementation from the github repository TF-Tutorials\footnote{\url{https://github.com/awjuliani/TF-Tutorials}}. The bug was found in the preparation of the images before the training of the model. There was a bug in the reshaping of the images, which resulted in wrong images. This affected the classification of the test images, and by correcting this bug, better classification results where achieved.
+A bug was discovered in the used implementation from the github repository TF-Tutorials\footnote{\url{https://github.com/awjuliani/TF-Tutorials}}. The bug was found in the preparation of the images before the training of the model. The bug was in the reshaping of the images, which resulted in wrong images. This affected the classification of the test images, and by correcting this bug, better classification results where achieved.
 
 \subsection{Test Accuracy}
 
@@ -16,7 +16,7 @@ The three models were tested to see which one would get the best test accuracy t
 
 \subsection{Feature Invariance}
 
-Feature invariance was tested, and it provides the model response from each model to the rotated images. The models behave differently to the images being rotated. For some labels the 90, 180 and 270 degree angle rotation, images are being classified well compared to the other angles. The biggest surprise of the project is the test accuracy when only applying images of one label for testing. Only the automobile label scored a test accuracy above 50\%. The test of the models on scrambled images across all labels the test accuracy was for each model above 80\% accuracy.
+Feature invariance was tested, and it provides the model response from each model to the rotated images. The models behave differently to the images being rotated. For some labels the 90, 180 and 270 degree angle rotation of the images are being classified well compared to the other angles. The biggest surprise of the project is the test accuracy when only applying images of one label for testing. Only the automobile label scored a test accuracy above 50\%. The test of the models on scrambled images across all labels gave a test accuracy for each model above 80\% accuracy.
 
 The three neural networks, all have the same problems with rotation as seen in Figure \ref{fig:ScrambleImages} 
 
@@ -46,11 +46,11 @@ In table \ref{table:results} the networks has been ranked from best to worst in 
 \end{table}
 \FloatBarrier
 
-Grading the models with 2 points for a best category model, 1 point for second best category model and 0 for the worst category model gives the following results:
+Grading the models with 2 points for a best category model, 1 point for second best category model and 0 for the worst category model gives the following results:\\
 DenseNet   = 15 points out of 20 possible\\
 RegularNet = 10 points out of 20 possible\\
 ResNet     = 05 points out of 20 possible\\
 
-In table \ref{table:falseclasReg}, \ref{table:falseclasRes} and \ref{table:falseclas} from chapter \ref{chp:results} it can be seen that images of ships are the ones with highest misclassification rate, with around 12\% misclassification rate across the three networks.  Another label with high misclassification rate is the truck label. The labels with the lowest misclassification rate is the frog and the dog, meaning that these were the ones that the networks were best at classifying, despite of the rotations. For the RegularNet the frog has a misclassification rate of 7.8\%. For DenseNet and ResNet the dog has the lowest misclassification rate, with around 8.37\% for both networks, while the frog has a misclassification rate being just slighly above this.
+In table \ref{table:falseclasReg}, \ref{table:falseclasRes} and \ref{table:falseclas} from chapter \ref{chp:results}, it can be seen that images of ships are the ones with highest misclassification rate, with around 12\% misclassification rate across the three networks.  Another label with high misclassification rate is the truck label. The labels with the lowest misclassification rate is the frog and the dog, meaning that these were the ones that the networks were best at classifying, despite of the rotations. For the RegularNet the frog has a misclassification rate of 7.8\%. For DenseNet and ResNet the dog has the lowest misclassification rate, around 8.37\% for both networks, while the frog has a misclassification rate being just slighly above this.
 
 In chapter \ref{chp:results} on figure \ref{fig:colReg}, \ref{fig:colRes} and \ref{fig:colDense} it can be seen that the automobile images starts out with the highest accuracy, when not rotated. After rotating the automobile images the accuracy drops drastically to around 10\% accuracy. It can also be seen that the accuracy for the frog images starts out around 30\%, but the curve for the accuracy never drops below 10\%. The curve of the accuracy for rotated ship images drops below 10\% and is alongside horse and truck images by far the lowest accuracy curve.

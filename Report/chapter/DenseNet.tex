@@ -12,7 +12,7 @@ To improve the flow of information in the DenseNet - direct connection is used f
 X_l=H_l([x_0,x_1,...,X_{l-1}])
 \end{equation}
 
-$[x_0,x_1,...,X_{l-1}]$ refers to the concatenation of the feature-maps which the layers produces. This network architecture is referred to as DenseNet. The direct connection is illustrated in figure \ref{fig:dense}. The multiple inputs of $H_e(.)$ are concatenated into a single tensor\footnote{Tensors are geometric objects that describe the linear relation between geometric vectors, scalars and other tensors}.
+$[x_0,x_1,...,X_{l-1}]$ refers to the concatenation of the feature-maps, which the layers produces. This network architecture is referred to as DenseNet. The direct connection is illustrated in figure \ref{fig:dense}. The multiple inputs of $H_e(.)$ are concatenated into a single tensor\footnote{Tensors are geometric objects that describe the linear relation between geometric vectors, scalars and other tensors}.
 
 Convolutional networks's becomes deeper. With the increasing depth new problem emerges. Such as the information of the input or gradient are passed through many layers, it can vanish this is also known as the vanishing-gradient problem. A solution for this is to bypass the signal from one layer to the next. The solution in DenseNet is to connect all layers directly with each other. This connection preserves the feed-forward nature and each layers receives additional inputs from all preceding layers. This is seen in figure \ref{fig:dense}.
 
