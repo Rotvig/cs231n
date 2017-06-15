@@ -1,12 +1,12 @@
 \section{Densely Connected Convolutional Networks - DenseNet}
 
-A traditional convolutional networks consists of L layers and have L connections - one between each layer and its subsequent layer. The DenseNet also known as Densely Connected Convolutional Networks has $L(L+1)/2$ direct connections. The DenseNet has several compelling advantages. For example it alleviates the vanishing-gradient problem, it strengthen feature propagation and substantially reduce the number of parameters.
+A traditional convolutional network consists of L layers and have L connections - one between each layer and its subsequent layer. The DenseNet also known as Densely Connected Convolutional Networks has $L(L+1)/2$ direct connections. The DenseNet has several compelling advantages. For example it alleviates the vanishing-gradient problem, it strengthens the feature propagation and substantially reduce the number of parameters.
 
 A DenseNet does not solely consist of dense blocks. It also consists of convolution, pooling and some classification layer at the end. This can be seen in figure \ref{fig:architecture}. The convolution and pooling layer are referred to as the transition layers.
 
 \myFigure{dens.PNG}{A deep densely connected convolutional network where there are three dense blocks. The blocks between the three dense blocks are adjacent blocks also referred to as transition layers\citep{DENSE}}{fig:architecture}{1}
 
-To improve the flow of information in the DenseNet - direct connection is used from any layer to all subsequent layers. The results of this is that the $l^{th}$ layer receives the feature-map of all the past layers. The output of the $l^{th}$ layer is denoted as $X_l$.
+To improve the flow of information in the DenseNet, a direct connection is used from any layer to all subsequent layers. The results of this is that the $l^{th}$ layer receives the feature-map of all the past layers. The output of the $l^{th}$ layer is denoted as $X_l$.
 
 \begin{equation}
 X_l=H_l([x_0,x_1,...,X_{l-1}])

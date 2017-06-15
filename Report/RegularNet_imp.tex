@@ -1,7 +1,7 @@
 \section{Deep Neural Net - RegularNet}
 The regular neural network is composed exclusively of regular and strided convolutional layers. While this architecture works well for relatively shallow networks, it becomes increasingly more difficult to train as the network depth increases.
 
-This section will elaborate on the implementaiton of a RegularNet used for this project. For the implementation python 2.7 and Jupyter is used. The implementation of the RegularNet is from the github repository\footnote{\url{https://github.com/awjuliani/TF-Tutorials}}. 
+This section will elaborate on the implementaiton of a RegularNet used for this project.
 
 The RegularNet implemented in the project consists of 34 layers, with an image as input layer. The first five layers in the neural network are normal convolutional layers with a zero padding of one, striding unit distance of one and feature mapping of 3x3. The convolutional layers are followed by a convolutional layer with a striding unit distance of two. The sixth layer functions as a pooling layer, since the output from the layer is an image of half the input size. The RegularNet consists of 25 convolutional layers, 5 pooling layers, 1 input layer, 1 flatten layer and a softmax classifier layer is appended to the end of the RegularNet. Adam is used as the activation function for the RegularNet, and normalization is used for regularization function. The creation of the RegularNet layers can be seen in listing \ref{lst:regularloop}.
 
