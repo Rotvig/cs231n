@@ -1,9 +1,7 @@
 \section{Deep Residual Networks - ResNet}
-%Peter
-
 Deep convolutional neural networks is today used to produce the best results on the ImageNet dataset, and this reveals that the depth of the networks is of high importance for the performance of the networks\citep{RESNET}. Some of the leading results on the ImageNet dataset have models with a depth of 16 to 30 layers. The real question is, if learning better networks is as easy as having more layers in the network?
 
-\myFigure{plain_network}{Results from two networks run on the CIFAR-10 dataset with 20 and 56 layers.\citep{RESNET}}{fig:plain}{1}
+\myFigure{plain_network}{Results from two networks run on the CIFAR-10 dataset with 20 and 56 layers \citep{RESNET}}{fig:plain}{1}
 
 On figure \ref{fig:plain} it is shown that a convolutional neural network with 20 layers achieves a better performance than a network with 56 layers. A reason why the 56-layer network is bad could be the vanishing / exploding gradients problem, which hamper convergence from the beginning of the training. This problem can be solved by normalized initialization and intermediate normalization layers, which will make the network start converging. After solving this problem the deeper networks will be able to converge, but here a degradation problem might occur, meaning that with the network depth increasing the accuracy gets saturated. the degradation problem is also shown on figure \ref{fig:plain}. To solve this problem a deep residual network can be used.
 

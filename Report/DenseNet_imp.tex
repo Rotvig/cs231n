@@ -6,7 +6,7 @@ The DenseNet in this project consist of 12 layers where 5 layers are dense block
 
 The creation of the 7 convolutional layers and 5 dense block's can be seen in listing \ref{lst:denseconvo}.
 
-\begin{lstlisting}[language=Python, label=lst:denseconvo, caption=for loop which creates the dense block's mixed with the convolutional layers]
+\begin{lstlisting}[language=Python, label=lst:denseconvo, caption=for loop whicifarh creates the dense block's mixed with the convolutional layers]
 layer1 = slim.conv2d(input_layer,64,[3,3],
 	normalizer_fn=slim.batch_norm,scope='conv_'+str(0))
 for i in range(5):
